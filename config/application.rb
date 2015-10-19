@@ -24,3 +24,8 @@ module Workspace
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue{}
+
+
+
+
