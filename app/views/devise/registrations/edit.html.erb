@@ -26,6 +26,18 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name%>
+  </div>
+   <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender,options_for_select(["Male","Female","Gay","Unknow"],"Gay")%>
+  </div>
+   <div class="field">
+    <%= f.label :age %><br />
+    <%= f.select :age,options_for_select((10..99).to_a,25) %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Update" %>
