@@ -5,22 +5,31 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<% if user_signed_in? %>
-<h3>Hello, <%= current_user.email %>!</h3>
-<%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% else %>
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Sign In", new_user_registration_path %>
+  <div class="container">
+    <nav class"navbar navbar-default">
+       <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+            <h3> Hello, <%= current_user.email %>!</h3>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+            <li class="dropdown"><%= link_to "Login", new_user_session_path %></li>
+            <li><%= link_to "Sign In", new_user_registration_path %></li>
+            <% end%>
+          </ul>
+        </div>
+    </nav>
+    <hr>
+    <% flash.each do |type,message| %>
+      <strong><%= message %></strong>
+      <% end %>
+    <br>
+    <%= yield %>
+  </div>
 
-<% end %>
-<hr>
-<% flash.each do |type,message| %>
-  <strong><%= message %></strong>
-  <% end %>
-<br>
-<%= yield %>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
